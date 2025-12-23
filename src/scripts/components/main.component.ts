@@ -4,6 +4,8 @@
  */
 
 import { BaseComponent } from "./base.component.js";
+import { UserFormComponent } from "./user-form.component.js";
+import { UsersTableComponent } from "./users-table.component.js";
 
 /**
  * @class MainComponent
@@ -11,16 +13,22 @@ import { BaseComponent } from "./base.component.js";
  */
 export class MainComponent extends BaseComponent {
   constructor() {
-    super("main", "main-component");
+    super("section", "main-component");
   }
   /**
-   * Renders the main component of the application.
+   * Renders the main component of the application, consisting of the user form, users table, and heading.
    * @returns {HTMLElement} The main component element.
    */
   public render(): HTMLElement {
     const heading = document.createElement("h1");
     heading.textContent = "User Registration";
     this.container.appendChild(heading);
+
+    const userForm = new UserFormComponent().render();
+    this.container.appendChild(userForm);
+
+    const usersTable = new UsersTableComponent({}).render();
+    this.container.appendChild(usersTable);
 
     return this.container;
   }
