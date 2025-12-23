@@ -1,0 +1,22 @@
+/* Global styles */
+html {
+  height: 100vh;
+}
+
+input {
+  padding: 0.5rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  padding: 0.25rem;
+  border: 1px solid gray;
+}
+
+td {
+  padding: 0.25rem;
+  word-wrap: break-word;
+}

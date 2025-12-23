@@ -81,7 +81,7 @@ The registration form should contain at least:
 
 ---
 
-### **Optional)**
+### **Optional**
 
 - Input validation messages
 - Confirmation before delete
