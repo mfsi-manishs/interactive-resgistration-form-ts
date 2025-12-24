@@ -16,6 +16,11 @@ export class AppState {
   private users: UsersRecord = {};
 
   /**
+   * The id of the selected user in the app state. If null then no user is selected.
+   */
+  private selectedUserId: string | null = null;
+
+  /**
    * The singleton instance of the AppState class.
    */
   private static instance: AppState;
@@ -60,6 +65,15 @@ export class AppState {
   }
 
   /**
+   * Sets all users in the app state from an array.
+   * Replaces any existing users in the app state with the given array.
+   * @param {User[]} users The array of users to set in the app state.
+   */
+  public setAllUsers(users: User[]): void {
+    this.users = users.reduce((acc, user) => ({ ...acc, [user.id]: user }), {} as UsersRecord);
+  }
+
+  /**
    * Gets all users in the app state as an array.
    * @returns {User[]} An array of all users in the app state.
    */
@@ -68,10 +82,35 @@ export class AppState {
   }
 
   /**
+   * Gets the UsersRecord object containing all users in the app state.
+   * The UsersRecord object is a map where the key is the unique identifier of the user and the value is the user object.
+   * @returns {UsersRecord} The UsersRecord object containing all users in the app state.
+   */
+  public getUsersRecord(): UsersRecord {
+    return this.users;
+  }
+
+  /**
    * Removes a user from the app state by id (unique identifier).
    * @param {string} id The id of the user to remove.
    */
   public removeUser(id: string): void {
     delete this.users[id];
+  }
+
+  /**
+   * Sets the selected user id in the app state.
+   * @param {string | null} id The id of the selected user. Pass null if no user is selected.
+   */
+  public setSelectedUserId(id: string | null): void {
+    this.selectedUserId = id;
+  }
+
+  /**
+   * Gets the selected user id in the app state.
+   * @returns {string | null} The id of the selected user or null if no user is selected.
+   */
+  public getSelectedUserId(): string | null {
+    return this.selectedUserId;
   }
 }

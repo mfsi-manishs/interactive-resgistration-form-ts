@@ -45,7 +45,14 @@ export class UserFormComponent extends BaseComponent {
       </div>
       <button type="submit">Submit</button>
     `;
-    this.container.appendChild(form);
+
+    const oldForm = this.container.querySelector("#user-form");
+    if (oldForm) {
+      this.container.replaceChild(form, oldForm);
+    } else {
+      this.container.appendChild(form);
+    }
+
     return this.container;
   }
 }

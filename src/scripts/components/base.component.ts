@@ -13,10 +13,16 @@ export abstract class BaseComponent {
   /**
    * Constructor for the BaseComponent class.
    * @param {string} [tag="div"] The HTML tag name for the container element.
+   * @param {string} [id] The id of the HTML container element to create.
    * @param {string} [className] The CSS class name for the container element.
    */
-  constructor(tag: string = "div", className?: string) {
+  constructor(tag: string = "div", id?: string, className?: string) {
     this.container = document.createElement(tag);
+
+    if (id) {
+      this.container.id = id;
+    }
+
     if (className) {
       this.container.className = className;
     }

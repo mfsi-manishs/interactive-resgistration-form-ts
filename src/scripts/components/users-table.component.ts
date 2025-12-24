@@ -3,7 +3,7 @@
  * @fileoverview This defines the users table component of the application.
  */
 
-import type { UsersRecord } from "../../models/user.model.js";
+import type { UsersRecord } from "../models/user.model.js";
 import { BaseComponent } from "./base.component.js";
 
 /**
@@ -18,7 +18,7 @@ export class UsersTableComponent extends BaseComponent {
    * @param {UsersRecord} users The UsersRecord object to initialize the component with.
    */
   constructor(users: UsersRecord) {
-    super("section", "users-table-component");
+    super("section", "user-table-container");
     this.users = users;
   }
 
@@ -58,7 +58,13 @@ export class UsersTableComponent extends BaseComponent {
           .join("")}
       </tbody>
     `;
-    this.container.appendChild(table);
+
+    const oldTable = document.getElementById("user-table");
+    if (oldTable) {
+      oldTable.replaceWith(table);
+    } else {
+      this.container.appendChild(table);
+    }
     return this.container;
   }
 }

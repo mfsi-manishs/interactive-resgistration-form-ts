@@ -13,7 +13,7 @@ import { UsersTableComponent } from "./users-table.component.js";
  */
 export class MainComponent extends BaseComponent {
   constructor() {
-    super("section", "main-component");
+    super("section", "main-container");
   }
   /**
    * Renders the main component of the application, consisting of the user form, users table, and heading.

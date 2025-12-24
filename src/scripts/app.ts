@@ -4,6 +4,9 @@
  */
 
 import { MainComponent } from "./components/main.component.js";
+import { UserController } from "./controllers/user.controller.js";
+import { UserFormEvents } from "./events/user-form.events.js";
+import { UsersTableEvents } from "./events/users-table.events.js";
 
 /**
  * @class App
@@ -30,6 +33,7 @@ class App {
       }
       App.root = rootElement;
       this.renderMainComponent();
+      this.handleEvents();
     } catch (error) {
       console.error("Error bootstrapping application:", error);
     }
@@ -45,6 +49,15 @@ class App {
       throw new Error("Root element does not exist");
     }
     App.root.appendChild(mainComponent.render());
+  }
+
+  /**
+   * Adds event listeners to the user form and users table components to handle form submission, edit, and delete operations.
+   */
+  private static handleEvents(): void {
+    // Add event listeners
+    new UserFormEvents(document, new UserController());
+    new UsersTableEvents(document, new UserController());
   }
 }
 
