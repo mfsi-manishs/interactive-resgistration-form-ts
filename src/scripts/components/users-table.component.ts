@@ -33,19 +33,25 @@ export class UsersTableComponent extends BaseComponent {
     table.innerHTML = `
       <thead>
         <tr>
-          <th class="w-40 text-left">Name</th>
-          <th class="w-40 text-left">Email</th>
+          <th class="w-25 text-left">Name</th>
+          <th class="w-25 text-left">Email</th>
+          <th class="w-15 text-left">Phone</th>
+          <th class="w-15 text-left">Gender</th>
           <th class="w-10 text-center">Edit</th>
           <th class="w-10 text-center">Delete</th>
         </tr>
       </thead>
       <tbody>
-        ${Object.entries(this.users)
-          .map(
-            ([id, user]) => `
+        ${
+          Object.keys(this.users).length > 0
+            ? Object.entries(this.users)
+                .map(
+                  ([id, user]) => `
               <tr>
                 <td>${user.name}</td>
                 <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>${user.gender}</td>
                 <td class="text-center">
                   <button data-id="${id}" class="edit-btn">Edit</button>
                 </td>
@@ -54,8 +60,14 @@ export class UsersTableComponent extends BaseComponent {
                 </td>
               </tr>
             `
-          )
-          .join("")}
+                )
+                .join("")
+            : `
+            <tr>
+              <td colspan="6" class="text-center">No users found. Please add a new user.</td>
+            </tr>
+          `
+        }
       </tbody>
     `;
 
