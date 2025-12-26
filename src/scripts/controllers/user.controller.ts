@@ -64,8 +64,10 @@ export class UserController {
       return;
     }
 
+    const isEditingUser = this.isEditingUser();
+
     // mutate state with action
-    if (this.isEditingUser()) {
+    if (isEditingUser) {
       this.userActions.addOrUpdateUser(user.id, user);
       this.userActions.setSelectedUserId(null);
     } else {
@@ -75,7 +77,7 @@ export class UserController {
     // side effects
     new UsersTableComponent(this.getUsersRecord()).render();
     DOMServices.resetUserForm();
-    if (this.isEditingUser()) {
+    if (isEditingUser) {
       DOMServices.setRowSelected(-1); // reset row selection
     }
   }

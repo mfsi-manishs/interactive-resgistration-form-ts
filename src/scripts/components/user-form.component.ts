@@ -11,7 +11,7 @@ import { BaseComponent } from "./base.component.js";
  */
 export class UserFormComponent extends BaseComponent {
   constructor() {
-    super("section", "user-form-component");
+    super("section", "user-form-container");
   }
 
   /**
